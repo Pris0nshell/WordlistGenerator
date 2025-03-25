@@ -89,15 +89,19 @@ word = input("Enter the base word: ").strip()
 # Define variables
 current_date = datetime.now().strftime("%Y-%m-%d")
 WORDLIST_FILE = f"{word}_custom_wordlist_{current_date}.txt"  # New filename format
-RULES_FILE = "/home/kali/Desktop/applications/custom/OneRuleToRuleThemAll.rule"
+
+# Dynamically get the current script's directory
+script_dir = os.path.dirname(os.path.realpath(__file__))
+RULES_FILE = os.path.join(script_dir, "OneRuleToRuleThemAll.rule")  # Locate rule file in the same directory as the script
+
 TEMP_FILE = "input_word.txt"
 ENCODING_FIX_FILE = "generated_wordlist_utf8.txt"
-YEARS = ["2020","2021","2022","2023", "2024", "2025", "2026", "2027", "2028","2029", "2030"]
+YEARS = ["2023", "2024", "2025", "2026"]
 SPECIAL_CHARS = ["@", "#", "!", "$"]
 
-# Check if rule file exists
+# Check if rule file exists in the same directory
 if not os.path.isfile(RULES_FILE):
-    print(f"Error: Rule file '{RULES_FILE}' not found. Ensure it's in the correct location.")
+    print(f"Error: Rule file '{RULES_FILE}' not found in the same directory as the script.")
     exit(1)
 
 # Generate variations
